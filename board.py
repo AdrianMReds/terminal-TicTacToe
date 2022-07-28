@@ -10,7 +10,6 @@ class Board:
      def __init__(self) -> None:
           self.current = 'X'
           self.remaining = 9
-          self.ending = ''
      
      def printBoard(self):
           print('| {} | {} | {} |'.format(self.bo[0][0], self.bo[0][1], self.bo[0][2]))
@@ -43,6 +42,7 @@ class Board:
 
           return 
 
+     #Function to check if the board is full
      def boardFull(self) -> bool:
           for i in self.bo:
                for xy in i:
@@ -50,6 +50,7 @@ class Board:
                          return False
           return True
 
+     #Function to check if the cell we're trying to fill is empty
      def emptyCell(self, n):
           if n in [1,2,3]:
                if self.bo[0][n-1] in ['1','2','3','4','5','6','7','8','9']:
@@ -62,6 +63,7 @@ class Board:
                     return True
           return False
      
+     #Function to add to board a value
      def addToBoard(self, n, curr):
           if n in [1,2,3]:
                self.bo[0][n-1] = curr
@@ -70,13 +72,14 @@ class Board:
           else:
                self.bo[2][(n%6)-1] = curr
 
-
+     #Function that changes current player
      def next(self, curr):
           if curr == 'X':
                return 'O'
           else:
                return 'X'
      
+     #Function that prints the result
      def theEnd(self, result):
           if result == 'tie':
                self.printBoard()
@@ -85,6 +88,7 @@ class Board:
                self.printBoard()
                print('\nPLAYER {} WON!\n'.format(result))
      
+     #Main function that handles the game
      def play(self):
           n = 0
           while True:
